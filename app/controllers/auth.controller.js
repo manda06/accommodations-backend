@@ -11,7 +11,7 @@ var jwt = require("jsonwebtoken");
 let googleUser = {};
 
 const google_id = process.env.CLIENT_ID;
-
+console.log(google_id)
 exports.login = async (req, res) => {
   console.log(req.body);
 
