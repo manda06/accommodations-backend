@@ -20,7 +20,7 @@ module.exports = (sequelize, Sequelize) => {
     studentId: {
       type: Sequelize.INTEGER,
     },
-    date: {
+    agreementDate: {
       type: Sequelize.DATE,
     }
  
