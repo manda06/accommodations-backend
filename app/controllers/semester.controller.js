@@ -1,7 +1,7 @@
 const db = require("../models");
-const Lesson = db.lesson;
+const semester = db.semester;
 const Op = db.Sequelize.Op;
-// Create and Save a new Lesson
+// Create and Save a new Semester
 exports.create = (req, res) => {
   // Validate request
   if (!req.body.title) {
@@ -12,36 +12,37 @@ exports.create = (req, res) => {
   }
 
   // Create a Lesson
-  const lesson = {
-    tutorialId: req.params.tutorialId,
+  const semester = {
+    semesterId: req.params.semesterId,
     title: req.body.title,
-    description: req.body.description,
-    published: req.body.published ? req.body.published : false,
+    startDate: req.body.startDate,
+    endDate: req.body.endDate,
+    courseId: req.body.courseId,
   };
   // Save Lesson in the database
-  Lesson.create(lesson)
+  Semester.create(semester)
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while creating the Lesson.",
+          err.message || "Some error occurred while creating the Semester.",
       });
     });
 };
 // Retrieve all Lessons from the database.
 exports.findAll = (req, res) => {
-  const lessonId = req.query.lessonId;
-  var condition = lessonId
+  const semesterId = req.query.semesterId;
+  var condition = semesterId
     ? {
-        lessonId: {
-          [Op.like]: `%${lessonId}%`,
+        semesterId: {
+          [Op.like]: `%${semesterId}%`,
         },
       }
     : null;
 
-  Lesson.findAll({ where: condition })
+  Semester.findAll({ where: condition })
     .then((data) => {
       res.send(data);
     })
@@ -51,53 +52,53 @@ exports.findAll = (req, res) => {
       });
     });
 };
-// Retrieve all Lessons for a tutorial from the database.
-exports.findAllForTutorial = (req, res) => {
-  const tutorialId = req.params.tutorialId;
+// Retrieve all semester for a course from the database.
+exports.findAllForSemester = (req, res) => {
+  const semesterId = req.params.semesterId;
 
-  Lesson.findAll({ where: { tutorialId: tutorialId } })
+ Semester.findAll({ where: { semesterId: semesterId } })
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Some error occurred while retrieving lessons.",
+        message: err.message || "Some error occurred while retrieving semseter.",
       });
     });
 };
-// Find a single Lesson with an id
+// Find a single semester with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
-  Lesson.findByPk(id)
+ Semester.findByPk(id)
     .then((data) => {
       if (data) {
         res.send(data);
       } else {
         res.status(404).send({
-          message: `Cannot find Lesson with id=${id}.`,
+          message: `Cannot find semester with id=${id}.`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving Lesson with id=" + id,
+        message: "Error retrieving semester with id=" + id,
       });
     });
 };
-// Update a Lesson by the id in the request
+// Update a semster by the id in the request
 exports.update = (req, res) => {
   const id = req.params.id;
-  Lesson.update(req.body, {
+ Semester.update(req.body, {
     where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Lesson was updated successfully.",
+          message: "Semester was updated successfully.",
         });
       } else {
         res.send({
-          message: `Cannot update Lesson with id=${id}. Maybe Lesson was not found or req.body is empty!`,
+          message: `Cannot update Lesson with id=${id}. Maybe Semester was not found or req.body is empty!`,
         });
       }
     })
@@ -110,13 +111,13 @@ exports.update = (req, res) => {
 // Delete a Lesson with the specified id in the request
 exports.delete = (req, res) => {
   const id = req.params.id;
-  Lesson.destroy({
+  Semester.destroy({
     where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
         res.send({
-          message: "Lesson was deleted successfully!",
+          message: "semester was deleted successfully!",
         });
       } else {
         res.send({
@@ -126,37 +127,37 @@ exports.delete = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Could not delete Lesson with id=" + id,
+        message: "Could not delete Semester with id=" + id,
       });
     });
 };
 // Delete all Lessons from the database.
 exports.deleteAll = (req, res) => {
-  Lesson.destroy({
+  Semester.destroy({
     where: {},
     truncate: false,
   })
     .then((nums) => {
-      res.send({ message: `${nums} Lessons were deleted successfully!` });
+      res.send({ message: `${nums} Semesters were deleted successfully!` });
     })
     .catch((err) => {
       res.status(500).send({
         message:
-          err.message || "Some error occurred while removing all lessons.",
+          err.message || "Some error occurred while removing all semesters.",
       });
     });
 };
-// Find all published Lessons
-exports.findAllPublished = (req, res) => {
-  const lessonId = req.query.lessonId;
+// Find all published semesters
+// exports.findAllPublished = (req, res) => {
+//   const lessonId = req.query.semesterId;
 
-  Lesson.findAll({ where: { published: true } })
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Some error occurred while retrieving lessons.",
-      });
-    });
-};
+//  Semester.findAll({ where: { published: true } })
+//     .then((data) => {
+//       res.send(data);
+//     })
+//     .catch((err) => {
+//       res.status(500).send({
+//         message: err.message || "Some error occurred while retrieving lessons.",
+//     });
+//   });
+//};
