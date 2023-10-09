@@ -31,17 +31,7 @@ db.session.belongsTo(
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 );
 
-// foreign key for tutorials
-db.user.hasMany(
-  db.course,
-  { as: "course" },
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-);
-db.course.belongsTo(
-  db.user,
-  { as: "user" },
-  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-);
+
 
 // foreign key for lessons
 db.semester.hasMany(
