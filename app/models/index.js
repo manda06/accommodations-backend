@@ -56,7 +56,7 @@ db.course.belongsTo(
   db.semester,
   { as: "semester" },
   { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
-
+);
 // foreign key for students
 db.user.hasMany(
   db.student,
