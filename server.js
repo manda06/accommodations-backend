@@ -29,11 +29,17 @@ app.get("/", (req, res) => {
 
 require("./app/routes/auth.routes.js")(app);
 require("./app/routes/user.routes")(app);
+
 require("./app/routes/course.routes")(app);
 require("./app/routes/semester.routes")(app);
 
+
+require("./app/routes/student.routes")(app);
+require("./app/routes/request.routes")(app);
+
+
 // set port, listen for requests
-const PORT = process.env.PORT || 3100;
+const PORT = process.env.PORT || 3025;
 if (process.env.NODE_ENV !== "test") {
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
