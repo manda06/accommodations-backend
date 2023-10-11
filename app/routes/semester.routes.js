@@ -4,11 +4,11 @@ module.exports = (app) => {
   var router = require("express").Router();
 
   // Create a new Lesson for a Tutorial
-  router.post("/:semesterId/semester/", [authenticate], semester.create);
+  router.post("/:id/semester/", [authenticate], semester.create);
 
   // Retrieve all Lessons for a Tutorial
   router.get(
-    "/:semesterId/semester/",
+    "/:id/semester/",
     [authenticate],
     semester.findAllForSemester
   );
@@ -21,16 +21,16 @@ module.exports = (app) => {
   // );
 
   // Retrieve a single Lesson with id
-  router.get("/:semesterId/semester/:id", [authenticate], semester.findOne);
+  router.get("/:id/semester/:id", [authenticate], semester.findOne);
 
   // Update a Lesson with id
-  router.put("/:semesterId/semester/:id", [authenticate], semester.update);
+  router.put("/:id/semester/:id", [authenticate], semester.update);
 
   // Delete a Lesson with id
-  router.delete("/:semesterId/semester/:id", [authenticate], semester.delete);
+  router.delete("/:id/semester/:id", [authenticate], semester.delete);
 
   // Delete all Lessons
-  router.delete("/:semesterId/semester/:id", [authenticate], semester.deleteAll);
+  router.delete("/:id/semester/:id", [authenticate], semester.deleteAll);
 
-  app.use("/semester/semester", router);
+  app.use("/semester/semesters", router);
 };
