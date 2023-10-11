@@ -14,7 +14,7 @@ exports.create = (req, res) => {
   // Create a Request
   const request = {
     requestId: req.params.requestId,
-    studentId: req.body.studentId,
+    studentId: req.params.studentId,
     status: req.body.description,
     meetingTime: req.body.meetingTime,
     meetingDate: req.body.meetingDate,
@@ -68,8 +68,8 @@ exports.findAllForStudent = (req, res) => {
 };
 // Find a single Request with an id
 exports.findOne = (req, res) => {
-  const id = req.params.id;
-  Request.findByPk(id)
+  //const id = req.params.id;
+  Request.findByPk(requestId)
     .then((data) => {
       if (data) {
         res.send(data);
@@ -87,9 +87,9 @@ exports.findOne = (req, res) => {
 };
 // Update a Lesson by the id in the request
 exports.update = (req, res) => {
-  const id = req.params.id;
+  //const id = req.params.id;
   Requests.update(req.body, {
-    where: { id: id },
+    where: { requestId: requestId },
   })
     .then((num) => {
       if (num == 1) {
@@ -110,9 +110,9 @@ exports.update = (req, res) => {
 };
 // Delete a Request with the specified id in the request
 exports.delete = (req, res) => {
-  const id = req.params.id;
+  //const id = req.params.id;
   Request.destroy({
-    where: { id: id },
+    where: { requestId: requestId },
   })
     .then((num) => {
       if (num == 1) {
