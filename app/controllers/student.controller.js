@@ -14,7 +14,7 @@ exports.create = (req, res) => {
 
   // Create a Student
   const student = {
-    id: req.body.id,
+    id: req.params.id,
     fName: req.body.fName,
     lName: req.body.lName,
     email: req.body.email,
