@@ -46,6 +46,16 @@ db.session.belongsTo(
 );
 
 
+// foreign key for lessons
+db.semester.hasMany(
+  db.course,
+  { as: "course" },
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
+);
+db.course.belongsTo(
+  db.semester,
+  { as: "semester" },
+  { foreignKey: { allowNull: false }, onDelete: "CASCADE" }
 
 // foreign key for students
 db.user.hasMany(

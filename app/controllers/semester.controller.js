@@ -1,5 +1,5 @@
 const db = require("../models");
-const semester = db.semester;
+const Semester = db.semester;
 const Op = db.Sequelize.Op;
 // Create and Save a new Semester
 exports.create = (req, res) => {
@@ -13,7 +13,7 @@ exports.create = (req, res) => {
 
   // Create a Lesson
   const semester = {
-    semesterId: req.params.semesterId,
+    id: req.params.id,
     title: req.body.title,
     startDate: req.body.startDate,
     endDate: req.body.endDate,
@@ -33,11 +33,11 @@ exports.create = (req, res) => {
 };
 // Retrieve all Lessons from the database.
 exports.findAll = (req, res) => {
-  const semesterId = req.query.semesterId;
-  var condition = semesterId
+  const id = req.query.id;
+  var condition = id
     ? {
-        semesterId: {
-          [Op.like]: `%${semesterId}%`,
+        id: {
+          [Op.like]: `%${id}%`,
         },
       }
     : null;
@@ -54,9 +54,9 @@ exports.findAll = (req, res) => {
 };
 // Retrieve all semester for a course from the database.
 exports.findAllForSemester = (req, res) => {
-  const semesterId = req.params.semesterId;
+  const id = req.params.id;
 
- Semester.findAll({ where: { semesterId: semesterId } })
+ Semester.findAll({ where: { id: id } })
     .then((data) => {
       res.send(data);
     })
