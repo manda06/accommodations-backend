@@ -32,5 +32,5 @@ module.exports = (app) => {
   // Delete all Lessons
   router.delete("/:id/semester/:id", [authenticate], semester.deleteAll);
 
-  app.use("/semester/semesters", router);
+  app.use("/accommodations-t5/semesters", router);
 };
