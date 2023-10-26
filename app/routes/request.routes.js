@@ -6,6 +6,9 @@ module.exports = (app) => {
   // Create a new Request for a Student
   router.post("/:studentId/requests/", [authenticate], requests.create);
 
+  // Retrive all Requests
+  router.get("/", [authenticate], requests.findAll);
+
   // Retrieve all Requests for a Student
   router.get(
     "/:studentId/requests/",
@@ -25,5 +28,5 @@ module.exports = (app) => {
   // Delete all Lessons
   router.delete("/:stuentId/requests/:id", [authenticate], requests.deleteAll);
 
-  app.use("/reqest/requests", router);
+  app.use("/accommodations-t5/requests", router);
 };
