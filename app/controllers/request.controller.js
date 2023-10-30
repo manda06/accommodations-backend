@@ -16,8 +16,8 @@ exports.create = (req, res) => {
     requestId: req.params.requestId,
     studentId: req.params.studentId,
     status: req.body.description,
-    meetingTime: req.body.meetingTime,
-    meetingDate: req.body.meetingDate,
+    semester: req.body.semester,
+    accommCat: req.body.accommCat,
     grievances: req.body.grievances
   };
   // Save Request in the database
