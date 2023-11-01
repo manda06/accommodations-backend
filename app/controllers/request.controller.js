@@ -1,6 +1,7 @@
 const db = require("../models");
 const Request = db.request;
 const Op = db.Sequelize.Op;
+const nodemailer = require('nodemailer');
 // Create and Save a new Requests
 exports.create = (req, res) => {
   // Validate request
@@ -23,7 +24,8 @@ exports.create = (req, res) => {
   // Save Request in the database
   Request.create(request)
     .then((data) => {
-      res.send(data);
+      sendRequestEmail();
+      res.send(data); 
     })
     .catch((err) => {
       res.status(500).send({
@@ -32,6 +34,42 @@ exports.create = (req, res) => {
       });
     });
 };
+
+
+//send email
+exports.sendRequestEmail = (req, res) => {
+
+    let messageOptions = {
+    from:'nicole.bass@eagles.oc.edu',
+    to: 'nicolebass2001@gmail.com',
+    subject:'Scheduled Email',
+    text: 'This is a scheduled email.'
+  }
+  
+  transporter.sendMail(messageOptions, function(err,info){
+    if(err){
+        throw err
+    }else {
+        console.log('Successfully sent.')
+    }
+  })
+  
+  };
+  
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'nicole.bass@eagles.oc.edu',
+      pass: 'kdib jucp faqf ulab'
+    }
+  })
+
+
+
+
+
+
+
 // Retrieve all Requests from the database.
 exports.findAll = (req, res) => {
   const requestId = req.query.requestId;
