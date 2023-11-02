@@ -1,6 +1,7 @@
 const db = require("../models");
 const Request = db.request;
 const Op = db.Sequelize.Op;
+const nodemailer = require('nodemailer');
 // Create and Save a new Requests
 exports.create = (req, res) => {
   // Validate request
@@ -14,16 +15,17 @@ exports.create = (req, res) => {
   // Create a Request
   const request = {
     requestId: req.params.requestId,
-    studentId: req.params.studentId,
+    studentId: req.body.studentId,
     status: req.body.description,
-    meetingTime: req.body.meetingTime,
-    meetingDate: req.body.meetingDate,
+    semester: req.body.semester,
+    accommCat: req.body.accommCat,
     grievances: req.body.grievances
   };
   // Save Request in the database
   Request.create(request)
     .then((data) => {
-      res.send(data);
+      sendRequestEmail(data);
+      res.send(data); 
     })
     .catch((err) => {
       res.status(500).send({
@@ -32,6 +34,38 @@ exports.create = (req, res) => {
       });
     });
 };
+
+
+//send email
+exports.sendRequestEmail = () => {
+
+    let messageOptions = {
+    from:'nicole.bass@eagles.oc.edu',
+    to: 'nicolebass2001@gmail.com',
+    subject:'Scheduled Email',
+    text: 'This is a scheduled email.'
+  }
+  
+  transporter.sendMail(messageOptions, function(err,info){
+    if(err){
+        throw err
+    }else {
+        console.log('Successfully sent.')
+    }
+  })
+  
+  };
+  
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'nicole.bass@eagles.oc.edu',
+      pass: 'kdib jucp faqf ulab'
+    }
+  })
+
+
+
 // Retrieve all Requests from the database.
 exports.findAll = (req, res) => {
   const requestId = req.query.requestId;
@@ -88,9 +122,10 @@ exports.findOne = (req, res) => {
 };
 // Update a Lesson by the id in the request
 exports.update = (req, res) => {
-  const id = req.query.requestId;
+
+  const requestId = req.params.requestId;
   Request.update(req.body, {
-    where: { id: id },
+    where: { requestId: requestId },
   })
     .then((num) => {
       if (num == 1) {
@@ -99,19 +134,20 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot update Lesson with id=${id}. Maybe Request was not found or req.body is empty!`,
+          message: `Cannot update Lesson with id=${requestId}. Maybe Request was not found or req.body is empty!`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating Request with id=" + id,
+        message: "Error updating Request with id=" + requestId,
       });
     });
 };
 // Delete a Request with the specified id in the request
 exports.delete = (req, res) => {
-  const id = req.params.id;
+
+  const requestId = req.params.requestId;
   Request.destroy({
     where: { requestId: id },
   })
