@@ -9,9 +9,13 @@ module.exports = (sequelize, Sequelize) => {
     meetingDate: {
       type: Sequelize.DATE,
     },
-    grievances: {
+    grievances:{
       type: Sequelize.STRING,
-    }
+    },
+    category:{
+      type: Sequelize.STRING,
+    },
+    
   });
   return Request;
 };
