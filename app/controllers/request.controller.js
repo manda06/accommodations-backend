@@ -66,10 +66,6 @@ exports.sendRequestEmail = () => {
 
 
 
-
-
-
-
 // Retrieve all Requests from the database.
 exports.findAll = (req, res) => {
   const requestId = req.query.requestId;
@@ -107,7 +103,7 @@ exports.findAllForStudent = (req, res) => {
 };
 // Find a single Request with an id
 exports.findOne = (req, res) => {
-  //const id = req.params.id;
+  const requestId = req.params.requestId;
   Request.findByPk(requestId)
     .then((data) => {
       if (data) {
@@ -149,7 +145,7 @@ exports.update = (req, res) => {
 };
 // Delete a Request with the specified id in the request
 exports.delete = (req, res) => {
-  //const id = req.params.id;
+  const requestId = req.params.requestId;
   Request.destroy({
     where: { requestId: requestId },
   })
