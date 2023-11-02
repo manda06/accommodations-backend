@@ -103,8 +103,8 @@ exports.findAllForStudent = (req, res) => {
 };
 // Find a single Request with an id
 exports.findOne = (req, res) => {
-  const requestId = req.params.requestId;
-  Request.findByPk(requestId)
+  const id = req.params.id;
+  Request.findByPk(id)
     .then((data) => {
       if (data) {
         res.send(data);
@@ -116,12 +116,13 @@ exports.findOne = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error retrieving Request with id=" + id,
+        message: err.message || "Error retrieving Request with id=" + id,
       });
     });
 };
 // Update a Lesson by the id in the request
 exports.update = (req, res) => {
+
   const requestId = req.params.requestId;
   Request.update(req.body, {
     where: { requestId: requestId },
@@ -145,9 +146,10 @@ exports.update = (req, res) => {
 };
 // Delete a Request with the specified id in the request
 exports.delete = (req, res) => {
+
   const requestId = req.params.requestId;
   Request.destroy({
-    where: { requestId: requestId },
+    where: { requestId: id },
   })
     .then((num) => {
       if (num == 1) {

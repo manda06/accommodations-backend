@@ -9,9 +9,13 @@ module.exports = (sequelize, Sequelize) => {
     accommCat: {
       type: Sequelize.STRING,
     },
-    grievances: {
+    grievances:{
       type: Sequelize.STRING,
-    }
+    },
+    category:{
+      type: Sequelize.STRING,
+    },
+    
   });
   return Request;
 };
