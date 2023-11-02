@@ -3,11 +3,14 @@ module.exports = (sequelize, Sequelize) => {
     status: {
       type: Sequelize.STRING,
     },
-    meetingTime: {
-      type: Sequelize.TIME,
+    semester: {
+      type: Sequelize.STRING,
     },
-    meetingDate: {
-      type: Sequelize.DATE,
+    accommCat: {
+      type: Sequelize.STRING,
+    },
+    grievances: {
+      type: Sequelize.STRING,
     }
   });
   return Request;

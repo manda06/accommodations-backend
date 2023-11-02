@@ -14,10 +14,11 @@ exports.create = (req, res) => {
   // Create a Request
   const request = {
     requestId: req.params.requestId,
-    studentId: req.params.studentId,
+    studentId: req.body.studentId,
     status: req.body.description,
-    meetingTime: req.body.meetingTime,
-    meetingDate: req.body.meetingDate,
+    semester: req.body.semester,
+    accommCat: req.body.accommCat,
+    grievances: req.body.grievances
   };
   // Save Request in the database
   Request.create(request)
@@ -87,8 +88,8 @@ exports.findOne = (req, res) => {
 };
 // Update a Lesson by the id in the request
 exports.update = (req, res) => {
-  //const id = req.params.id;
-  Requests.update(req.body, {
+  const requestId = req.params.requestId;
+  Request.update(req.body, {
     where: { requestId: requestId },
   })
     .then((num) => {
@@ -98,13 +99,13 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot update Lesson with id=${id}. Maybe Request was not found or req.body is empty!`,
+          message: `Cannot update Lesson with id=${requestId}. Maybe Request was not found or req.body is empty!`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating Request with id=" + id,
+        message: "Error updating Request with id=" + requestId,
       });
     });
 };

@@ -20,7 +20,7 @@ exports.create = (req, res) => {
     email: req.body.email,
     studentId: req.body.studentId,
     date: req.body.date,
-
+    userId: req.body.userId
   };
 
   // Save Student in the database
@@ -34,6 +34,26 @@ exports.create = (req, res) => {
       });
     });
 };
+
+
+exports.getUserId = (req, res) => {
+  Student.findAll({ where: {userId : req.params.userId}})
+    .then((data) => {
+      if (data) {
+        res.send(data);
+      } else {
+        res.status(404).send({
+          message: `Cannot find Student with id=${req.params.userId}.`,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while retrieving people.",
+      });
+    });
+};
+
 
 // Retrieve all People from the database.
 exports.findAll = (req, res) => {
