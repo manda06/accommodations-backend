@@ -24,7 +24,7 @@ exports.create = (req, res) => {
   // Save Request in the database
   Request.create(request)
     .then((data) => {
-      sendRequestEmail();
+      sendRequestEmail(data);
       res.send(data); 
     })
     .catch((err) => {
@@ -37,7 +37,7 @@ exports.create = (req, res) => {
 
 
 //send email
-exports.sendRequestEmail = (req, res) => {
+exports.sendRequestEmail = () => {
 
     let messageOptions = {
     from:'nicole.bass@eagles.oc.edu',
