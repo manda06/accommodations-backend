@@ -17,6 +17,10 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
     },
+    roleType: {
+      type: Sequelize.STRING,
+      alllowNull: false,
+    },
     // refresh_token: {
     //   type: Sequelize.STRING(512),
     //   allowNull: true
