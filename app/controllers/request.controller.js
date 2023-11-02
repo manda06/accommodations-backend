@@ -37,13 +37,13 @@ exports.create = (req, res) => {
 
 
 //send email
-exports.sendRequestEmail = () => {
+sendRequestEmail = () => {
 
     let messageOptions = {
     from:'nicole.bass@eagles.oc.edu',
     to: 'nicolebass2001@gmail.com',
-    subject:'Scheduled Email',
-    text: 'This is a scheduled email.'
+    subject:'Accommodations Request Form',
+    text: 'There is a new student Request.'
   }
   
   transporter.sendMail(messageOptions, function(err,info){
