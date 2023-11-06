@@ -16,7 +16,7 @@ exports.create = (req, res) => {
   const request = {
     requestId: req.params.requestId,
     studentId: req.body.studentId,
-    status: req.body.description,
+    status: req.body.status,
     semester: req.body.semester,
     accommCat: req.body.accommCat,
     grievances: req.body.grievances
@@ -34,8 +34,6 @@ exports.create = (req, res) => {
       });
     });
 };
-
-
 //send email
 sendRequestEmail = () => {
 
@@ -64,7 +62,24 @@ sendRequestEmail = () => {
     }
   })
 
-
+  exports.getstudentId = (req, res) => {
+    Student.findAll({ where: {userId : req.params.studentId}})
+      .then((data) => {
+        if (data) {
+          res.send(data);
+        } else {
+          res.status(404).send({
+            message: `Cannot find Student with id=${req.params.studentId}.`,
+          });
+        }
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: err.message || "Some error occurred while retrieving people.",
+        });
+      });
+  };
+  
 
 // Retrieve all Requests from the database.
 exports.findAll = (req, res) => {
