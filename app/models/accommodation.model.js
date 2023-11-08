@@ -11,6 +11,9 @@ module.exports = (sequelize, Sequelize) => {
       },
       approvedBy:{
         type: Sequelize.STRING,
+      },
+      category:{
+        type: Sequelize.STRING,
       }
     });
    

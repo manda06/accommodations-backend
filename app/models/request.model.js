@@ -6,16 +6,16 @@ module.exports = (sequelize, Sequelize) => {
     semester: {
       type: Sequelize.STRING,
     },
-    accommCat: {
-      type: Sequelize.STRING,
-    },
+    
     grievances:{
       type: Sequelize.STRING,
     },
     category:{
       type: Sequelize.STRING,
     },
-    
+    comments:{
+      type: Sequelize.STRING,
+    },
   });
   return Request;
 };

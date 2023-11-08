@@ -138,9 +138,9 @@ exports.findOne = (req, res) => {
 // Update a Lesson by the id in the request
 exports.update = (req, res) => {
 
-  const requestId = req.params.requestId;
+  const id = req.params.id;
   Request.update(req.body, {
-    where: { requestId: requestId },
+    where: { id: id },
   })
     .then((num) => {
       if (num == 1) {
@@ -149,13 +149,13 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot update Lesson with id=${requestId}. Maybe Request was not found or req.body is empty!`,
+          message: `Cannot update Lesson with id=${id}. Maybe Request was not found or req.body is empty!`,
         });
       }
     })
     .catch((err) => {
       res.status(500).send({
-        message: "Error updating Request with id=" + requestId,
+        message: "Error updating Request with id=" + id,
       });
     });
 };
