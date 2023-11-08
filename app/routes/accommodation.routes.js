@@ -9,9 +9,7 @@ module.exports = (app) => {
     // Retrieve all Accommodations
     router.get("/", [authenticate], accommodations.findAll);
   
-    // Retrieve all Accommodations for user
-    router.get("/userTut/:userId", [authenticate], accommodations.findAllForUser);
-  
+      
     // Retrieve a single Accommodation with id
     router.get("/:id", [authenticate], accommodations.findOne);
   
@@ -24,5 +22,5 @@ module.exports = (app) => {
     // Delete all Accommodations
     router.delete("/", [authenticate], accommodations.deleteAll);
   
-    app.use("/accommodation/accommodations", router);
+    app.use("/accommodations-t5/accommodations", router);
   };
