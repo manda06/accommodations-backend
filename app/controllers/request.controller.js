@@ -47,7 +47,7 @@ sendRequestEmail = () => {
     attachments: [
     {   // file on disk as an attachment
       filename: 'requestEmail.docx',
-      path: '/xampp/htdocs/seiv/project3/accomodations-backend/requestEmail.docx' // stream this file
+      path: 'https://docs.google.com/document/d/14wGjaEGssvhF1ZXipVUcTSu9X-9uzetb/edit' // stream this file
   },
     ]
   }
