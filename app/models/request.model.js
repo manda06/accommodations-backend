@@ -5,9 +5,9 @@ module.exports = (sequelize, Sequelize) => {
     },
     semester: {
       type: Sequelize.STRING,
-    },
-    
+    }, 
     grievances:{
+
       type: Sequelize.STRING,
     },
     category:{
