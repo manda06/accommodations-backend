@@ -39,14 +39,35 @@ exports.create = (req, res) => {
 //send email
 sendRequestEmail = () => {
 
-    let messageOptions = {
+    let studentEmail = {
+    from:'nicole.bass@eagles.oc.edu',
+    to: 'nathan.curnutt@eagles.oc.edu',
+    subject:'Accommodations Request Form',
+    text: 'Please review the attached document.',
+    attachments: [
+    {   // file on disk as an attachment
+      filename: 'requestEmail.docx',
+      path: '/xampp/htdocs/seiv/project3/accomodations-backend/requestEmail.docx' // stream this file
+  },
+    ]
+  }
+
+  let adminEmail = {
     from:'nicole.bass@eagles.oc.edu',
     to: 'nicolebass2001@gmail.com',
     subject:'Accommodations Request Form',
-    text: 'There is a new student Request.'
+    text: 'There is a new student Request.',
   }
+
+  transporter.sendMail(adminEmail, function(err,info){
+    if(err){
+        throw err
+    }else {
+        console.log('Successfully sent.')
+    }
+  })
   
-  transporter.sendMail(messageOptions, function(err,info){
+  transporter.sendMail(studentEmail, function(err,info){
     if(err){
         throw err
     }else {
