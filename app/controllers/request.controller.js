@@ -19,7 +19,9 @@ exports.create = (req, res) => {
     status: req.body.status,
     semester: req.body.semester,
     category: req.body.category,
-    grievances: req.body.grievances
+    grievances: req.body.grievances,
+    comments: req.body.comments
+    
   };
   // Save Request in the database
   Request.create(request)

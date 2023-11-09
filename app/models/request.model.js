@@ -11,7 +11,10 @@ module.exports = (sequelize, Sequelize) => {
     },
     grievances: {
       type: Sequelize.STRING,
-    }
+    },
+    comments:{
+      type: Sequelize.STRING,
+    },
   });
   return Request;
 };
