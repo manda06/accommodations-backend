@@ -90,7 +90,7 @@ exports.findOne = (req, res) => {
         message: "Error retrieving Student with id=" + id,
       });
     });
-};
+};    
 
 // Find a single Student with an email
 exports.findByEmail = (req, res) => {

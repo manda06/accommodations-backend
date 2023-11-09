@@ -36,6 +36,7 @@ require("./app/routes/semester.routes")(app);
 
 require("./app/routes/student.routes")(app);
 require("./app/routes/request.routes")(app);
+require("./app/routes/accommodation.routes")(app);
 
 
 // set port, listen for requests

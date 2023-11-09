@@ -28,9 +28,19 @@ db.accommodation = require("./accommodation.model.js")(sequelize, Sequelize);
 // foreign keys for accommodation
 db.accommodation.belongsToMany(
   db.student, 
-  { through: 'studentAccomodation' });
+  { through: 'studentAccomodation' }
+);
 
-db.accommodation.hasOne(db.course);
+db.request.hasMany(
+  db.accommodation,
+  {as: "accommodation"},
+  {foreignKey:{allowNull: false }, onDelete: "CASCADE"}
+  );
+
+db.accommodation.belongsToMany(
+  db.request,
+  {through: "requestAccomodation"}
+);
 
 // foreign key for session
 db.user.hasMany(

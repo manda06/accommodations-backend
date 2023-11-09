@@ -5,16 +5,18 @@ module.exports = (sequelize, Sequelize) => {
     },
     semester: {
       type: Sequelize.STRING,
-    },
-    category:{
+    }, 
+    grievances:{
+
       type: Sequelize.STRING,
     },
-    grievances: {
+    category:{
       type: Sequelize.STRING,
     },
     comments:{
       type: Sequelize.STRING,
     },
+    
   });
   return Request;
 };
