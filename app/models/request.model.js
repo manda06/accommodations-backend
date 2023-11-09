@@ -16,6 +16,7 @@ module.exports = (sequelize, Sequelize) => {
     comments:{
       type: Sequelize.STRING,
     },
+    
   });
   return Request;
 };
