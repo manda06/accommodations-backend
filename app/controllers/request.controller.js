@@ -39,17 +39,14 @@ exports.create = (req, res) => {
 //send email
 sendRequestEmail = () => {
 
+  var textBody = "<p>Thank you for submitting your request for accommodations. We require supporting documentation to fulfill your request.<br> Documentation must be from an appropriate, qualified professional who has seen you within the past 18 months and must contain the following information: <br><br> You are a person with a disability. <br>The diagnosis (what is the disability?) <br>Information about the necessary classroom accommodations you will need to successfully complete the semester. <br>There must be a nexus between the disability and the accommodations requested.<br> Name and credentials (license #, etc.) of the diagnostic clinician. <br><br> Documentation may be emailed to me, but it must be on official letterhead. If your doctor’s office is unwilling to email me (this is the most likely scenario), they may mail the document to you. Then, scan and email it to me. <br><br> Once the information is submitted, we will schedule a time to meet to discuss the details (in person or via video conference). After our meeting, I will email your professors your specific ADA academic accommodations letter. Accommodations MUST BE RENEWED EACH SEMESTER. <br><br> Please let me know if you have any other questions or concerns. I look forward to hearing from you.</p>"
+
     let studentEmail = {
     from:'nicole.bass@eagles.oc.edu',
     to: 'nathan.curnutt@eagles.oc.edu',
     subject:'Accommodations Request Form',
-    text: 'Please review the attached document.',
-    attachments: [
-    {   // file on disk as an attachment
-      filename: 'requestEmail.docx',
-      path: 'https://docs.google.com/document/d/14wGjaEGssvhF1ZXipVUcTSu9X-9uzetb/edit' // stream this file
-  },
-    ]
+    //text: 'Thank you for submitting your request for accommodations. We require supporting documentation to fulfill your request. Documentation must be from an appropriate, qualified professional who has seen you within the past 18 months and must contain the following information: You are a person with a disability.  The diagnosis (what is the disability?) Information about the necessary classroom accommodations you will need to successfully complete the semester. There must be a nexus between the disability and the accommodations requested.  Name and credentials (license #, etc.) of the diagnostic clinician. Documentation may be emailed to me, but it must be on official letterhead. If your doctor’s office is unwilling to email me (this is the most likely scenario), they may mail the document to you. Then, scan and email it to me. Once the information is submitted, we will schedule a time to meet to discuss the details (in person or via video conference). After our meeting, I will email your professors your specific ADA academic accommodations letter. Accommodations MUST BE RENEWED EACH SEMESTER. Please let me know if you have any other questions or concerns. I look forward to hearing from you.',
+    html: textBody
   }
 
   let adminEmail = {
