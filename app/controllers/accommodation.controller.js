@@ -130,7 +130,7 @@ exports.deleteAll = (req, res) => {
 exports.findAllForCategory = (req, res) => {
   const category = req.params.category;
 
-  AccommodationsRequests.findAll({ where: { category: category } })
+  Accommodation.findAll({ where: { category: category } })
     .then((data) => {
       res.send(data);
     })
