@@ -1,5 +1,6 @@
 const db = require("../models");
 const Request = db.request;
+const Accommodation = db.accommodation;
 const Op = db.Sequelize.Op;
 const nodemailer = require('nodemailer');
 // Create and Save a new Requests
@@ -111,7 +112,7 @@ exports.findAll = (req, res) => {
       }
     : null;
 
-  Request.findAll({ where: condition })
+  Request.findAll({ where: condition }, {include: Accommodation})
     .then((data) => {
       res.send(data);
     })
@@ -138,7 +139,7 @@ exports.findAllForStudent = (req, res) => {
 // Find a single Request with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
-  Request.findByPk(id)
+  Request.findByPk(id, {include: Accommodation})
     .then((data) => {
       if (data) {
         res.send(data);

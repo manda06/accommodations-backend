@@ -14,8 +14,12 @@ module.exports = (sequelize, Sequelize) => {
       },
       category:{
         type: Sequelize.STRING,
-      }
+      },
+
+      
+
     });
+    
    
 
     return Accommodation;

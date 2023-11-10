@@ -9,7 +9,10 @@ module.exports = (app) => {
     // Retrieve all Accommodations
     router.get("/", [authenticate], accommodations.findAll);
   
-      
+    
+    // Retrieve all accommodations for a category
+    router.get("/:category", [authenticate], accommodations.findAllForCategory);  
+
     // Retrieve a single Accommodation with id
     router.get("/:id", [authenticate], accommodations.findOne);
   
