@@ -19,7 +19,7 @@ module.exports = (app) => {
     router.put("/:id", [authenticate], accommodationRequests.update);
   
     // Delete a Accommodation with id
-    router.delete("/:id", [authenticate], accommodationRequests.delete);
+    router.delete("/:requestId" + "/:accommodationId", [authenticate], accommodationRequests.delete);
   
     // Delete all Accommodations
     router.delete("/", [authenticate], accommodationRequests.deleteAll);

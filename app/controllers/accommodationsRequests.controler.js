@@ -90,9 +90,10 @@ exports.update = (req, res) => {
 };
 // Delete a AccommodationsRequests with the specified id in the request
 exports.delete = (req, res) => {
-  const id = req.params.id;
+  const requestId = req.params.requestId;
+  const accommodationId = req.params.accommodationId
   AccommodationsRequests.destroy({
-    where: { id: id },
+    where: { requestId:requestId, accommodationId:accommodationId },
   })
     .then((num) => {
       if (num == 1) {
