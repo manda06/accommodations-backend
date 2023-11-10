@@ -32,7 +32,8 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   const id = req.query.id;
   var condition = id ? { id: { [Op.like]: `%${id}%` } } : null;
-  Accommodation.findAll({ where: condition })
+  Accommodation.findAll({ where: condition }, {include: Request})
+  
     .then((data) => {
       res.send(data);
     })
@@ -48,7 +49,7 @@ exports.findAll = (req, res) => {
 // Find a single Tutorial with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
-  Accommodation.findByPk(id)
+  Accommodation.findByPk(id, {include: Request})
     .then((data) => {
       if (data) {
         res.send(data);
@@ -123,6 +124,19 @@ exports.deleteAll = (req, res) => {
       res.status(500).send({
         message:
           err.message || "Some error occurred while removing all Accommodation.",
+      });
+    });
+};
+exports.findAllForCategory = (req, res) => {
+  const category = req.params.category;
+
+  AccommodationsRequests.findAll({ where: { category: category } })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while retrieving Accommodation.",
       });
     });
 };
