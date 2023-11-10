@@ -32,7 +32,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   const id = req.query.id;
   var condition = id ? { id: { [Op.like]: `%${id}%` } } : null;
-  Accommodation.findAll({ where: condition }, {include: Request})
+  Accommodation.findAll({ where: condition })
   
     .then((data) => {
       res.send(data);
