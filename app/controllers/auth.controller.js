@@ -11,6 +11,7 @@ var jwt = require("jsonwebtoken");
 let googleUser = {};
 
 const google_id = process.env.CLIENT_ID;
+//console.log("Google_id is:" + google_id);
 
 exports.login = async (req, res) => {
   console.log(req.body);
@@ -73,6 +74,7 @@ exports.login = async (req, res) => {
           fName: firstName,
           lName: lastName,
           email: email,
+          roleType: roleType
         };
       }
     })
@@ -155,6 +157,7 @@ exports.login = async (req, res) => {
             lName: user.lName,
             userId: user.id,
             token: session.token,
+            roleType: user.roleType
             // refresh_token: user.refresh_token,
             // expiration_date: user.expiration_date
           };
@@ -196,6 +199,7 @@ exports.login = async (req, res) => {
           lName: user.lName,
           userId: user.id,
           token: token,
+          roleType: user.roleType
           // refresh_token: user.refresh_token,
           // expiration_date: user.expiration_date
         };

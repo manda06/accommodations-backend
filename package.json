@@ -1,12 +1,12 @@
 {
-  "name": "tutorial-backend",
+  "name": "accommodations-backend",
   "version": "1.0.0",
-  "description": "Tutorial Node.js with Rest API",
+  "description": "Accommodations Node.js with Rest API",
   "main": "server.js",
   "scripts": {
     "test": "jest --",
     "start": "node server.js",
-    "bundle": "mkdir deploy && cp -r app server.js package.json package-lock.json tutorial-backend.service .env deploy"
+    "bundle": "mkdir deploy && cp -r app server.js package.json package-lock.json accommodations-t5-backend.service .env deploy"
   },
   "keywords": [
     "node.js",
@@ -23,6 +23,7 @@
     "jest": "^29.3.1",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
+    "nodemailer": "^6.9.7",
     "parser": "^0.1.4",
     "sequelize": "^6.33.0",
     "supertest": "^6.3.3"
